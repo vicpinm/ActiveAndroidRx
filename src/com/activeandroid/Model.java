@@ -26,6 +26,7 @@ import com.activeandroid.query.Select;
 import com.activeandroid.serializer.TypeSerializer;
 import com.activeandroid.util.Log;
 import com.activeandroid.util.ReflectionUtils;
+import com.google.gson.annotations.SerializedName;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ public abstract class Model {
 	// PRIVATE MEMBERS
 	//////////////////////////////////////////////////////////////////////////////////////
 
+    @SerializedName("id")
 	private Long mId = null;
 
 	private final TableInfo mTableInfo;
@@ -63,7 +65,11 @@ public abstract class Model {
 		return mId;
 	}
 
-	public final void delete() {
+    public void setId(Long id) {
+        this.mId = id;
+    }
+
+    public final void delete() {
 		Cache.openDatabase().delete(mTableInfo.getTableName(), idName+"=?", new String[] { getId().toString() });
 		Cache.removeEntity(this);
 
@@ -155,7 +161,10 @@ public abstract class Model {
 			mId = db.insert(mTableInfo.getTableName(), null, values);
 		}
 		else {
-			db.update(mTableInfo.getTableName(), values, idName+"=" + mId, null);
+			int updated = db.update(mTableInfo.getTableName(), values, idName+"=" + mId, null);
+            if(updated == 0) {
+                mId = db.insert(mTableInfo.getTableName(), null, values);
+            }
 		}
 
 		Cache.getContext().getContentResolver()

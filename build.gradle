@@ -1,17 +1,40 @@
 apply plugin: 'java'
-apply from: 'gradle-mvn-push.gradle'
+apply plugin: 'maven'
+
+group = 'com.michaelpardo'
+version = '3.1.0'
+
+uploadArchives {
+    configuration = configurations.archives
+    repositories {
+        mavenDeployer {
+            // I chose to put my repo in the project's root
+            repository(url: uri("../../localrepo"))
+            pom.project {
+                artifactId 'active-android'
+                name 'ActiveAndroid'
+                packaging 'aar'
+            }
+        }
+    }
+}
 
 targetCompatibility = '1.6'
 sourceCompatibility = '1.6'
 
 sourceSets {
-	main {
-		java {
-			srcDir 'src'
-		}
-	}
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {
-	compile fileTree(dir: 'libs', include: '*.jar')
+    compile fileTree(dir: 'libs', include: '*.jar')
+    compile 'com.google.code.gson:gson:2.3.1'
 }
