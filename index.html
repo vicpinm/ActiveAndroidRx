@@ -1,44 +1,41 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Activeandroid by pardom</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta charset="UTF-8">
+    <title>ActiveAndroidRx by vicpinm</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Activeandroid</h1>
-        <p>Active record style SQLite persistence for Android</p>
+    <section class="page-header">
+      <h1 class="project-name">ActiveAndroidRx</h1>
+      <h2 class="project-tagline">Active record style SQLite persistence for Android with reactive extensions</h2>
+      <a href="https://github.com/vicpinm/ActiveAndroidRx" class="btn">View on GitHub</a>
+      <a href="https://github.com/vicpinm/ActiveAndroidRx/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/vicpinm/ActiveAndroidRx/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-        <p class="view"><a href="https://github.com/pardom/ActiveAndroid">View the Project on GitHub <small>pardom/ActiveAndroid</small></a></p>
+    <section class="main-content">
+      <p><a href="https://travis-ci.org/pardom/ActiveAndroid"><img src="https://travis-ci.org/pardom/ActiveAndroid.png?branch=master" alt="Build Status"></a> <a href="http://waffle.io/pardom/ActiveAndroid"><img src="https://badge.waffle.io/pardom/ActiveAndroid.png" alt="Stories in Ready"></a>  </p>
 
+<h2>
+<a id="activeandroid" class="anchor" href="#activeandroid" aria-hidden="true"><span class="octicon octicon-link"></span></a>ActiveAndroid</h2>
 
-        <ul>
-          <li><a href="https://github.com/pardom/ActiveAndroid/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/pardom/ActiveAndroid/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/pardom/ActiveAndroid">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <p><a href="https://travis-ci.org/pardom/ActiveAndroid"><img src="https://travis-ci.org/pardom/ActiveAndroid.png?branch=master" alt="Build Status"></a> <a href="http://waffle.io/pardom/ActiveAndroid"><img src="https://badge.waffle.io/pardom/ActiveAndroid.png" alt="Stories in Ready"></a>  </p>
+<p>ActiveAndroid fork witch includes SQLBrite from Square (<a href="https://github.com/square/sqlbrite">https://github.com/square/sqlbrite</a>) to get reactive queries.</p>
 
-<h1>
-<a name="activeandroid" class="anchor" href="#activeandroid"><span class="octicon octicon-link"></span></a>ActiveAndroid</h1>
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<p>ActiveAndroid is an active record style ORM (<a href="http://en.wikipedia.org/wiki/Object-relational_mapping">object relational mapper</a>). What does that mean exactly? Well, ActiveAndroid allows you to save and retrieve SQLite database records without ever writing a single SQL statement. Each database record is wrapped neatly into a class with methods like <em>save()</em> and <em>delete()</em>.</p>
+<pre><code>new RxSelect&lt;MyEntity&gt;.from(MyEntity.class).where(...).execute().subscribe(myEntitiesList -&gt; ...);
+</code></pre>
 
 <p>ActiveAndroid does so much more than this though. Accessing the database is a hassle, to say the least, in Android. ActiveAndroid takes care of all the setup and messy stuff, and all with just a few simple steps of configuration.</p>
 
 <h2>
-<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
 
 <ul>
 <li><a href="http://github.com/pardom/ActiveAndroid/wiki/Getting-started">Getting started</a></li>
@@ -50,8 +47,10 @@
 <li><a href="http://github.com/pardom/ActiveAndroid/wiki/Schema-migrations">Schema migrations</a></li>
 <li><a href="http://github.com/pardom/ActiveAndroid/wiki/Pre-populated-databases">Pre-populated-databases</a></li>
 <li><a href="https://github.com/pardom/ActiveAndroid/wiki/Running-the-Test-Suite">Running the Test Suite</a></li>
-</ul><h2>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p><a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache Version 2.0</a></p>
 
@@ -71,7 +70,7 @@ limitations under the License.
 </code></pre>
 
 <h2>
-<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
 
 <p>Please fork this repository and contribute back using <a href="http://github.com/pardom/ActiveAndroid/pulls">pull requests</a>.</p>
 
@@ -80,17 +79,19 @@ limitations under the License.
 <p>You can run the test suite by following the instructions on the <a href="https://github.com/pardom/ActiveAndroid/wiki/Running-the-Test-Suite">Running the Test Suite</a> Wiki page.</p>
 
 <h2>
-<a name="author" class="anchor" href="#author"><span class="octicon octicon-link"></span></a>Author</h2>
+<a id="author" class="anchor" href="#author" aria-hidden="true"><span class="octicon octicon-link"></span></a>Author</h2>
 
 <p>Michael Pardo | <a href="http://www.michaelpardo.com">www.michaelpardo.com</a> | <a href="http://www.activeandroid.com">www.activeandroid.com</a></p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/pardom">pardom</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/vicpinm/ActiveAndroidRx">ActiveAndroidRx</a> is maintained by <a href="https://github.com/vicpinm">vicpinm</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-              <script type="text/javascript">
+
+    </section>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
