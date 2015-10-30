@@ -16,14 +16,15 @@ package com.activeandroid;
  * limitations under the License.
  */
 
-import java.util.Collection;
-
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.util.LruCache;
 
 import com.activeandroid.serializer.TypeSerializer;
+import com.activeandroid.sqlbrite.BriteDatabase;
+import com.activeandroid.sqlbrite.SqlBrite;
 import com.activeandroid.util.Log;
+
+import java.util.Collection;
 
 public final class Cache {
 	//////////////////////////////////////////////////////////////////////////////////////
@@ -42,6 +43,10 @@ public final class Cache {
 	private static DatabaseHelper sDatabaseHelper;
 
 	private static LruCache<String, Model> sEntities;
+
+	private static SqlBrite sSqlBrite;
+
+	private static BriteDatabase sDatabase;
 
 	private static boolean sIsInitialized = false;
 
@@ -65,6 +70,9 @@ public final class Cache {
 		sContext = configuration.getContext();
 		sModelInfo = new ModelInfo(configuration);
 		sDatabaseHelper = new DatabaseHelper(configuration);
+		sSqlBrite = SqlBrite.create();
+		sDatabase = sSqlBrite.wrapDatabaseHelper(sDatabaseHelper);
+
 
 		// TODO: It would be nice to override sizeOf here and calculate the memory
 		// actually used, however at this point it seems like the reflection
@@ -102,8 +110,8 @@ public final class Cache {
 		return sIsInitialized;
 	}
 
-	public static synchronized SQLiteDatabase openDatabase() {
-		return sDatabaseHelper.getWritableDatabase();
+	public static synchronized BriteDatabase openDatabase() {
+		return sDatabase;
 	}
 
 	public static synchronized void closeDatabase() {
@@ -155,4 +163,9 @@ public final class Cache {
 	public static synchronized String getTableName(Class<? extends Model> type) {
 		return sModelInfo.getTableInfo(type).getTableName();
 	}
+
+	public static DatabaseHelper getHelper(){
+		return sDatabaseHelper;
+	}
+
 }

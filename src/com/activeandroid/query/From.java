@@ -28,6 +28,8 @@ import com.activeandroid.util.SQLiteUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.Observable;
+
 public final class From implements Sqlable {
 	private Sqlable mQueryBase;
 
@@ -304,6 +306,16 @@ public final class From implements Sqlable {
 			
 		}
 	}
+
+    public <T extends Model> Observable<T> executeRx() {
+        if (mQueryBase instanceof Select) {
+            return SQLiteUtils.rawRxQuery(mType, toSql(), getArguments());
+
+        } else {
+            throw new IllegalArgumentException("Query must be instance of Select");
+
+        }
+    }
 
 	public <T extends Model> T executeSingle() {
 		if (mQueryBase instanceof Select) {

@@ -18,9 +18,8 @@ uploadArchives {
         }
     }
 }
-
-targetCompatibility = '1.6'
-sourceCompatibility = '1.6'
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 sourceSets {
     main {
@@ -37,4 +36,6 @@ repositories {
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
     compile 'com.google.code.gson:gson:2.3.1'
+    compile 'io.reactivex:rxjava:1.0.14'
+
 }
