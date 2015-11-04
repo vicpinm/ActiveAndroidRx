@@ -9,22 +9,14 @@ ActiveAndroid fork witch includes SQLBrite from Square (https://github.com/squar
     
 ## Download
 
-Grab via Maven:
-```xml
-<dependency>
-  <groupId>com.michaelpardo</groupId>
-  <artifactId>activeandroid</artifactId>
-  <version>3.1.0-SNAPSHOT</version>
-</dependency>
-```
-or Gradle:
+Grab via Gradle:
 ```groovy
 repositories {
     mavenCentral()
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
 
-compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
+compile 'com.github.vicpinm:activeandroidrx:3.1.0-SNAPSHOT'
 ```
 
 ## Documentation
