@@ -5,7 +5,7 @@ ActiveAndroid fork witch includes SQLBrite from Square (https://github.com/squar
 
 ## Usage
 
-    new RxSelect<MyEntity>.from(MyEntity.class).where(...).execute().subscribe(myEntitiesList -> ...);
+    RxSelect.from(MyEntity.class).where(...).execute().subscribe(myEntitiesList -> ...);
     
 ## Download
 
