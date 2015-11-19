@@ -536,7 +536,7 @@ public final class BriteDatabase implements Closeable {
      * that there are no nested transactions (newTransaction has only been called once) and will
      * throw an exception if that is not the case.
      *
-     * @param sleepAmount if > 0, sleep this long before starting a new transaction if
+     * @param sleepAmount if greater than 0, sleep this long before starting a new transaction if
      *   the lock was actually yielded. This will allow other background threads to make some
      *   more progress than they would if we started the transaction immediately.
      * @return true if the transaction was yielded
