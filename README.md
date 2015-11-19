@@ -13,10 +13,9 @@ Grab via Gradle:
 ```groovy
 repositories {
     mavenCentral()
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
 
-compile 'com.github.vicpinm:activeandroidrx:3.1.0-SNAPSHOT'
+compile 'com.github.vicpinm:activeandroidrx:3.1.1'
 ```
 
 ## Documentation
