@@ -21,18 +21,27 @@
     <section class="main-content">
       <p><a href="https://travis-ci.org/pardom/ActiveAndroid"><img src="https://travis-ci.org/pardom/ActiveAndroid.png?branch=master" alt="Build Status"></a> <a href="http://waffle.io/pardom/ActiveAndroid"><img src="https://badge.waffle.io/pardom/ActiveAndroid.png" alt="Stories in Ready"></a>  </p>
 
-<h2>
-<a id="activeandroidrx" class="anchor" href="#activeandroidrx" aria-hidden="true"><span class="octicon octicon-link"></span></a>ActiveAndroidRx</h2>
+<h1>
+<a id="activeandroidrx" class="anchor" href="#activeandroidrx" aria-hidden="true"><span class="octicon octicon-link"></span></a>ActiveAndroidRx</h1>
 
 <p>ActiveAndroid fork witch includes SQLBrite from Square (<a href="https://github.com/square/sqlbrite">https://github.com/square/sqlbrite</a>) to get reactive queries.</p>
 
 <h2>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<pre><code>new RxSelect&lt;MyEntity&gt;.from(MyEntity.class).where(...).execute().subscribe(myEntitiesList -&gt; ...);
+<pre><code>RxSelect.from(MyEntity.class).where(...).execute().subscribe(myEntitiesList -&gt; ...);
 </code></pre>
 
-<p>ActiveAndroid does so much more than this though. Accessing the database is a hassle, to say the least, in Android. ActiveAndroid takes care of all the setup and messy stuff, and all with just a few simple steps of configuration.</p>
+<h2>
+<a id="download" class="anchor" href="#download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download</h2>
+
+<p>Grab via Gradle:</p>
+
+<div class="highlight highlight-source-groovy"><pre>repositories {
+    mavenCentral()
+}
+
+compile <span class="pl-s"><span class="pl-pds">'</span>com.github.vicpinm:activeandroidrx:3.1.1<span class="pl-pds">'</span></span></pre></div>
 
 <h2>
 <a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
