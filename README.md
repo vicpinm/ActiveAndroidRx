@@ -1,7 +1,8 @@
 [![Build Status](https://travis-ci.org/pardom/ActiveAndroid.png?branch=master)](https://travis-ci.org/pardom/ActiveAndroid) [![Stories in Ready](https://badge.waffle.io/pardom/ActiveAndroid.png)](http://waffle.io/pardom/ActiveAndroid)  
 # ActiveAndroidRx
 
-ActiveAndroid fork witch includes SQLBrite from Square (https://github.com/square/sqlbrite) to get reactive queries.
+Wrapper around ActiveAndroid which introduces reactive queries with SQLBrite from Square (https://github.com/square/sqlbrite).
+You can use it as alternative for Android loaders! 
 
 ## Usage
 
