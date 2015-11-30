@@ -60,4 +60,7 @@ You can run the test suite by following the instructions on the [Running the Tes
 
 ## Author
 
+Víctor Manuel Pineda Murcia | http://vicpinm.github.io/ActiveAndroidRx/
+
+Original Project: 
 Michael Pardo | www.michaelpardo.com | www.activeandroid.com
