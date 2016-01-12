@@ -8,10 +8,13 @@ import com.activeandroid.Cache;
 import com.activeandroid.Model;
 import com.activeandroid.rxschedulers.AndroidSchedulers;
 import com.activeandroid.sqlbrite.SqlBrite;
+import com.activeandroid.util.Log;
 import com.activeandroid.util.SQLiteUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import rx.Observable;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -22,15 +25,17 @@ public class RxSelect<T extends Model> {
 
     private Class<T> mType;
     private String mAlias;
-    private String mWhere;
+    private StringBuilder mWhere = new StringBuilder();
     private String mLimit;
     private String mGroupBy;
     private String mHaving;
     private String mOrderBy;
     private String mOffset;
+    private List<Object> mArguments;
 
     private RxSelect(Class<T> type) {
         this.mType = type;
+        mArguments = new ArrayList<>();
     }
 
     public static <T extends Model> RxSelect<T> from(Class<T> type) {
@@ -47,8 +52,17 @@ public class RxSelect<T extends Model> {
         return this;
     }
 
-    public RxSelect<T> where(String where) {
-        this.mWhere = where;
+    public RxSelect<T> where(String clause) {
+        // Chain conditions if a previous condition exists.
+        if (mWhere.length() > 0) {
+            mWhere.append(" AND ");
+        }
+        mWhere.append(clause);
+        return this;
+    }
+
+    public RxSelect<T> where(String clause, Object... args) {
+        where(clause).addArguments(args);
         return this;
     }
 
@@ -84,7 +98,7 @@ public class RxSelect<T extends Model> {
 
         String sql = buildSql();
 
-        return Cache.openDatabase().createQuery(Cache.getTableName(mType), sql)
+        return Cache.openDatabase().createQuery(Cache.getTableName(mType), sql, getArguments())
                 .subscribeOn(Schedulers.io())
                 .map(new Func1<SqlBrite.Query, List<T>>() {
                     @Override
@@ -108,7 +122,7 @@ public class RxSelect<T extends Model> {
 
         String sql = buildSql();
 
-        return Cache.openDatabase().createQuery(Cache.getTableName(mType), sql)
+        return Cache.openDatabase().createQuery(Cache.getTableName(mType), sql, getArguments())
                 .subscribeOn(Schedulers.io())
                 .map(new Func1<SqlBrite.Query, T>() {
                     @Override
@@ -140,7 +154,22 @@ public class RxSelect<T extends Model> {
         addWhere(sql);
         addLimit(sql);
 
-        return sql.toString();
+        return sqlString(sql);
+    }
+
+    public String toCountSql() {
+
+        final StringBuilder sql = new StringBuilder();
+        sql.append("SELECT COUNT(*) ");
+
+        addFrom(sql);
+        addWhere(sql);
+        addGroupBy(sql);
+        addHaving(sql);
+        addLimit(sql);
+        addOffset(sql);
+
+        return sqlString(sql);
     }
 
     private void buildSelect(final StringBuilder sql) {
@@ -204,5 +233,47 @@ public class RxSelect<T extends Model> {
             sql.append(mOffset);
             sql.append(" ");
         }
+    }
+
+    /**
+     * Gets the number of rows returned by the query.
+     */
+    public Observable<Integer> count() {
+        return Cache.openDatabase().createQuery(Cache.getTableName(mType), toCountSql(), getArguments())
+                .subscribeOn(Schedulers.io())
+                .map(new Func1<SqlBrite.Query, Integer>() {
+                    @Override public Integer call(SqlBrite.Query query) {
+                        Cursor cursor = query.run();
+                        if (cursor.moveToFirst()) {
+                            return cursor.getInt(cursor.getColumnIndex(cursor.getColumnName(0)));
+                        }
+                        return 0;
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    private String sqlString(final StringBuilder sql) {
+        return sql.toString().trim();
+    }
+
+    void addArguments(Object[] args) {
+        for(Object arg : args) {
+            if (arg.getClass() == boolean.class || arg.getClass() == Boolean.class) {
+                arg = (arg.equals(true) ? 1 : 0);
+            }
+            mArguments.add(arg);
+        }
+    }
+
+    public String[] getArguments() {
+        final int size = mArguments.size();
+        final String[] args = new String[size];
+
+        for (int i = 0; i < size; i++) {
+            args[i] = mArguments.get(i).toString();
+        }
+
+        return args;
     }
 }
