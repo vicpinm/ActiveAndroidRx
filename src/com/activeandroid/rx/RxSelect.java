@@ -152,7 +152,11 @@ public class RxSelect<T extends Model> {
         buildSelect(sql);
         addFrom(sql);
         addWhere(sql);
+        addGroupBy(sql);
+        addHaving(sql);
+        addOrderBy(sql);
         addLimit(sql);
+        addOffset(sql);
 
         return sqlString(sql);
     }
