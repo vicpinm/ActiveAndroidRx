@@ -5,11 +5,11 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.activeandroid</groupId>
-    <artifactId>activeandroid</artifactId>
-    <version>3.1-SNAPSHOT</version>
+    <groupId>com.activeandroidrx</groupId>
+    <artifactId>activeandroidrx</artifactId>
+    <version>3.1.1</version>
     <packaging>jar</packaging>
-    <name>ActiveAndroid</name>
+    <name>ActiveAndroidRx</name>
 
     <licenses>
         <license>
@@ -20,16 +20,16 @@
     </licenses>
 
   <parent>
-    <groupId>com.activeandroid</groupId>
-    <artifactId>activeandroid-parent</artifactId>
-    <version>3.1-SNAPSHOT</version>
+    <groupId>com.activeandroidrx</groupId>
+    <artifactId>activeandroidrx-parent</artifactId>
+    <version>3.1.1</version>
     <relativePath>./pom.xml</relativePath>
   </parent>
 
     <scm>
-        <connection>scm:git:git@github.com:pardom/ActiveAndroid.git</connection>
-        <developerConnection>scm:git:git@github.com:pardom/ActiveAndroid.git</developerConnection>
-        <url>git@github.com:pardom/ActiveAndroid.git</url>
+        <connection>scm:git:git@github.com:vicpinm/ActiveAndroidRx.git</connection>
+        <developerConnection>scm:git:git@github.com:vicpinm/ActiveAndroidRx.git</developerConnection>
+        <url>git@github.com:vicpinm/ActiveAndroidRx.git</url>
     </scm>
 
     <properties>

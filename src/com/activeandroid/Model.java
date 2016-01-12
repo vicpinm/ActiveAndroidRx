@@ -18,12 +18,12 @@ package com.activeandroid;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.activeandroid.content.ContentProvider;
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import com.activeandroid.serializer.TypeSerializer;
+import com.activeandroid.sqlbrite.BriteDatabase;
 import com.activeandroid.util.Log;
 import com.activeandroid.util.ReflectionUtils;
 import com.google.gson.annotations.SerializedName;
@@ -78,7 +78,7 @@ public abstract class Model {
 	}
 
 	public final Long save() {
-		final SQLiteDatabase db = Cache.openDatabase();
+		final BriteDatabase db = Cache.openDatabase();
 		final ContentValues values = new ContentValues();
 
 		for (Field field : mTableInfo.getFields()) {
@@ -158,12 +158,12 @@ public abstract class Model {
 		}
 
 		if (mId == null) {
-			mId = db.insert(mTableInfo.getTableName(), null, values);
+			mId = db.insert(mTableInfo.getTableName(), values);
 		}
 		else {
 			int updated = db.update(mTableInfo.getTableName(), values, idName+"=" + mId, null);
             if(updated == 0) {
-                mId = db.insert(mTableInfo.getTableName(), null, values);
+                mId = db.insert(mTableInfo.getTableName(), values);
             }
 		}
 
