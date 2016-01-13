@@ -16,7 +16,7 @@ repositories {
     mavenCentral()
 }
 
-compile 'com.github.vicpinm:activeandroidrx:3.1.2'
+compile 'com.github.vicpinm:activeandroidrx:3.1.4'
 ```
 
 ## Documentation
