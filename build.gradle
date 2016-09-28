@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply from: 'gradle-mvn-push.gradle'
 
 group = 'com.github.vicpinm'
-version = '3.1.1'
+version = '3.1.5'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
