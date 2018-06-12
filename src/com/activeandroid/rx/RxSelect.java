@@ -133,6 +133,7 @@ public class RxSelect<T extends Model> {
                                 cursor.moveToFirst();
                                 Model model = (Model) mType.newInstance();
                                 model.loadFromCursor(cursor);
+                                cursor.close();
                                 return (T) model;
                             }
                         } catch (Exception ex) {
@@ -249,7 +250,9 @@ public class RxSelect<T extends Model> {
                     @Override public Integer call(SqlBrite.Query query) {
                         Cursor cursor = query.run();
                         if (cursor.moveToFirst()) {
-                            return cursor.getInt(cursor.getColumnIndex(cursor.getColumnName(0)));
+                            int amount = cursor.getInt(cursor.getColumnIndex(cursor.getColumnName(0)));
+                            cursor.close();
+                            return amount;
                         }
                         return 0;
                     }
