@@ -8,7 +8,6 @@ import com.activeandroid.Cache;
 import com.activeandroid.Model;
 import com.activeandroid.rxschedulers.AndroidSchedulers;
 import com.activeandroid.sqlbrite.SqlBrite;
-import com.activeandroid.util.Log;
 import com.activeandroid.util.SQLiteUtils;
 
 import java.util.ArrayList;
@@ -105,8 +104,9 @@ public class RxSelect<T extends Model> {
                     public List<T> call(SqlBrite.Query query) {
                         try {
                             Cursor cursor = query.run();
-                            return SQLiteUtils.processCursor(mType, cursor);
-
+                            List<T> result = SQLiteUtils.processCursor(mType, cursor);
+                            cursor.close();
+                            return result;
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }
