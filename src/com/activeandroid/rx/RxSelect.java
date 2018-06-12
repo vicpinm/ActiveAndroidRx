@@ -135,6 +135,8 @@ public class RxSelect<T extends Model> {
                                 model.loadFromCursor(cursor);
                                 cursor.close();
                                 return (T) model;
+                            } else if(cursor != null) {
+                                cursor.close();
                             }
                         } catch (Exception ex) {
                             ex.printStackTrace();
